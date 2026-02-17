@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donkey Kong</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="game-container" id="gameContainer">
+        <!-- Top bar -->
+        <div class="top-bar">
+            <button class="menu-btn" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <p class="instruction">Click on the game area and press ENTER to start</p>
+            <button class="fullscreen-btn" id="fullscreenBtn">
+                <div class="fullscreen-icon"></div>
+            </button>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <!-- Title -->
+            <div class="title">
+                <h1 class="title-text">D<span class="o-letter">O</span>NKEY K<span class="o-letter">O</span>NG</h1>
+            </div>
+
+            <!-- Game characters section -->
+            <div class="characters-section">
+                <!-- Left oil barrel with fire -->
+                <div class="oil-barrel left">
+                    <img src="Screenshot_2026-02-17_at_11.45.37_AM-removebg-preview.png" alt="Oil Barrel"
+                        style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;">
+                </div>
+
+                <!-- Donkey Kong -->
+                <div class="donkey-kong" id="donkeyKong">
+                    <img src="imgs/1.png" alt="DK Frame 1" class="dk-frame dk-frame-1">
+                    <img src="imgs/2.png" alt="DK Frame 2" class="dk-frame dk-frame-2">
+                    <img src="imgs/3.png" alt="DK Frame 3" class="dk-frame dk-frame-3">
+                </div>
+
+                <!-- Right oil barrel with fire -->
+                <div class="oil-barrel right">
+                    <img src="Screenshot_2026-02-17_at_11.45.37_AM-removebg-preview.png" alt="Oil Barrel"
+                        style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;">
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav class="menu">
+                <div class="menu-item active" id="newGame">
+                    <div class="mario-icon"></div>
+                    <span class="menu-text red">New Game</span>
+                </div>
+                <div class="menu-item" id="continueGame">
+                    <div class="mario-placeholder"></div>
+                    <span class="menu-text white">Continue Game</span>
+                </div>
+                <div class="menu-item" id="controls">
+                    <div class="mario-placeholder"></div>
+                    <span class="menu-text white">Controls</span>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Game Screen (Hidden by default) -->
+        <div id="gameScreen" class="game-screen" style="display: none;">
+            <!-- HUD -->
+            <div class="hud">
+                <div class="score-container">
+                    <div class="score-label">SCORE</div>
+                    <div class="score-value">000000</div>
+                </div>
+                <div class="high-score-container">
+                    <div class="score-label">HIGH SCORE</div>
+                    <div class="score-value">000000</div>
+                </div>
+                <div class="level-container">L=01</div>
+                <div class="lives-container">
+                    <div class="mario-life-icon"></div>
+                    <div class="mario-life-icon"></div>
+                    <div class="mario-life-icon"></div>
+                </div>
+            </div>
+
+            <!-- Game Board -->
+            <div class="game-board">
+                <!-- Platforms -->
+                <div class="platform platform-1"></div>
+                <div class="platform platform-2"></div>
+                <div class="platform platform-3"></div>
+                <div class="platform platform-4"></div>
+                <div class="platform platform-5"></div>
+                <div class="platform platform-6"></div>
+
+                <!-- Ladders -->
+                <!-- L1 to L2 -->
+                <div class="ladder ladder-1-2"></div>
+                <!-- L2 to L3 -->
+                <div class="ladder ladder-2-3"></div>
+                <!-- L3 to L4 -->
+                <div class="ladder ladder-3-4"></div>
+                <!-- L4 to L5 -->
+                <div class="ladder ladder-4-5"></div>
+                <!-- L5 to L6 -->
+                <div class="ladder ladder-5-6"></div>
+
+                <!-- Donkey Kong Game Sprite -->
+                <div id="dkGameSprite" class="dk-game-sprite">
+                    <img src="imgs/1.png" class="dk-game-frame" alt="DK">
+                </div>
+
+                <!-- Mario Game Sprite (Hidden initially) -->
+                <div id="marioGameSprite" class="mario-game-sprite" style="display: none;">
+                    <div class="mario-game-icon"></div>
+                </div>
+
+                <!-- Oil Barrel (Game Screen) -->
+                <div class="oil-barrel game-barrel">
+                    <img src="Screenshot_2026-02-17_at_11.45.37_AM-removebg-preview.png" alt="Oil Barrel"
+                        style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="logic.js"></script>
+</body>
+
+</html>

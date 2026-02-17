@@ -1,0 +1,724 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    font-family: 'Press Start 2P', cursive;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Game container */
+.game-container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Top bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    background-color: #000;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+}
+
+.menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+}
+
+.instruction {
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+}
+
+.fullscreen-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.fullscreen-icon {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    position: relative;
+}
+
+.fullscreen-icon::before,
+.fullscreen-icon::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border: 2px solid #fff;
+}
+
+.fullscreen-icon::before {
+    top: -4px;
+    right: -4px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.fullscreen-icon::after {
+    bottom: -4px;
+    left: -4px;
+    border-right: none;
+    border-top: none;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Title */
+.title {
+    margin-top: 20px;
+}
+
+.title-text {
+    font-size: 52px;
+    font-weight: bold;
+    background: linear-gradient(180deg, 
+        #ffd700 0%, 
+        #ffaa00 20%, 
+        #ff8800 40%, 
+        #e86800 60%, 
+        #d84800 80%, 
+        #c83000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    letter-spacing: 4px;
+    filter: drop-shadow(3px 3px 0px #8b0000) 
+            drop-shadow(4px 4px 0px #600000);
+    position: relative;
+}
+
+.title-text .o-letter {
+    background: linear-gradient(180deg, 
+        #ffd700 0%, 
+        #ffaa00 30%, 
+        #ff6600 70%, 
+        #cc3300 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Characters section */
+.characters-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 80px;
+    margin: 20px 0;
+}
+
+/* Oil Barrel */
+.oil-barrel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 60px;
+    height: 100px;
+}
+
+.barrel-body {
+    width: 60px;
+    height: 120px;
+    background: linear-gradient(90deg, 
+        #d84000 0%, 
+        #ff6b1a 20%, 
+        #ff8533 40%, 
+        #ff6b1a 60%, 
+        #d84000 80%, 
+        #a83200 100%);
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.barrel-body::before,
+.barrel-body::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: linear-gradient(90deg,
+        #1a1a8c 0%,
+        #3333cc 30%,
+        #4d4dff 50%,
+        #3333cc 70%,
+        #1a1a8c 100%);
+}
+
+.barrel-body::before {
+    top: 25px;
+}
+
+.barrel-body::after {
+    bottom: 25px;
+}
+
+.oil-label {
+    background: #0066cc;
+    color: #fff;
+    font-size: 8px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    z-index: 1;
+}
+
+/* Fire animation */
+.fire {
+    width: 50px;
+    height: 40px;
+    position: relative;
+    margin-bottom: -5px;
+}
+
+.flame {
+    position: absolute;
+    bottom: 0;
+    border-radius: 50% 50% 20% 20%;
+    animation: flicker 0.15s infinite alternate;
+}
+
+.flame1 {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 30px;
+    background: linear-gradient(to top, #ff4500, #ff8c00, #ffd700);
+    animation-delay: 0s;
+}
+
+.flame2 {
+    left: 25%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 25px;
+    background: linear-gradient(to top, #ff6600, #ffaa00, #ffdd00);
+    animation-delay: 0.05s;
+}
+
+.flame3 {
+    left: 75%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 25px;
+    background: linear-gradient(to top, #ff6600, #ffaa00, #ffdd00);
+    animation-delay: 0.1s;
+}
+
+@keyframes flicker {
+    0% {
+        transform: translateX(-50%) scaleY(1) scaleX(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(-50%) scaleY(1.1) scaleX(0.9);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateX(-50%) scaleY(0.9) scaleX(1.1);
+        opacity: 1;
+    }
+}
+
+/* Additional fire spark animation */
+.fire::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #ffd700;
+    border-radius: 50%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: spark 0.3s infinite;
+}
+
+@keyframes spark {
+    0%, 100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* Donkey Kong */
+.donkey-kong {
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* DK frames - stacked on top of each other with consistent sizing */
+.dk-frame {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    opacity: 0;
+    /* Center the images */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Animation for 3-frame loop: 1 -> 2 -> 3 -> 1 -> 2 -> 3... */
+/* Total duration 2.25s = 0.75s per frame */
+.dk-frame-1 {
+    animation: dkFrame1 2.25s steps(1) infinite;
+}
+
+.dk-frame-2 {
+    animation: dkFrame2 2.25s steps(1) infinite;
+}
+
+.dk-frame-3 {
+    animation: dkFrame3 2.25s steps(1) infinite;
+}
+
+/* Frame 1 visible: 0% - 33.33% (1.5 seconds) */
+@keyframes dkFrame1 {
+    0%, 33.32% {
+        opacity: 1;
+    }
+    33.33%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Frame 2 visible: 33.33% - 66.66% (1.5 seconds) */
+@keyframes dkFrame2 {
+    0%, 33.32% {
+        opacity: 0;
+    }
+    33.33%, 66.65% {
+        opacity: 1;
+    }
+    66.66%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Frame 3 visible: 66.66% - 100% (1.5 seconds) */
+@keyframes dkFrame3 {
+    0%, 66.65% {
+        opacity: 0;
+    }
+    66.66%, 100% {
+        opacity: 1;
+    }
+}
+
+/* Menu */
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+}
+
+.mario-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect fill="%23e52521" x="3" y="0" width="10" height="6"/><rect fill="%23ffa500" x="2" y="4" width="12" height="4"/><rect fill="%23e52521" x="4" y="6" width="8" height="6"/><rect fill="%230033cc" x="3" y="10" width="4" height="4"/><rect fill="%230033cc" x="9" y="10" width="4" height="4"/><rect fill="%23ffa500" x="6" y="3" width="4" height="3"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: marioRun 0.3s steps(2) infinite;
+}
+
+@keyframes marioRun {
+    0%, 50% {
+        transform: scaleX(1);
+    }
+    51%, 100% {
+        transform: scaleX(-1);
+    }
+}
+
+.mario-placeholder {
+    width: 30px;
+    height: 30px;
+}
+
+.menu-text {
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.menu-text.red {
+    color: #ff3333;
+}
+
+.menu-text.white {
+    color: #fff;
+}
+
+/* Selection indicator */
+.menu-item.active .mario-icon {
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .title-text {
+        font-size: 24px;
+    }
+    
+    .title-img {
+        max-width: 280px;
+    }
+    
+    .characters-section {
+        gap: 30px;
+    }
+    
+    .barrel-body {
+        width: 45px;
+        height: 90px;
+    }
+    
+    .donkey-kong {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .dk-sprite {
+        width: 100px;
+        height: 90px;
+    }
+    
+    .menu-text {
+        font-size: 12px;
+    }
+    
+    .instruction {
+        font-size: 8px;
+    }
+}
+
+/* Game Screen Styles */
+.game-screen {
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HUD */
+.hud {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    font-size: 20px;
+    color: #fff;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.score-container, .high-score-container, .level-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.score-label {
+    color: #ff3333;
+}
+
+.level-container {
+    color: #3366ff;
+    justify-content: flex-end;
+    padding-bottom: 5px;
+}
+
+.lives-container {
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+    padding-bottom: 5px;
+}
+
+.mario-life-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #e52521; /* Mario red stub */
+    /* Simple placeholder for life icon using rough shape */
+    clip-path: polygon(20% 0, 80% 0, 100% 20%, 100% 100%, 0 100%, 0 20%);
+}
+
+/* Game Board */
+.game-board {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Platforms / Girders */
+.platform {
+    position: absolute;
+    height: 25px;
+    background-color: #590000; /* Darker red base */
+    border-top: 2px solid #ff99cc; /* Pinkish highlight */
+    border-bottom: 2px solid #ff99cc;
+    width: 100%;
+    /* Create zigzag truss pattern */
+    background-image: 
+        linear-gradient(45deg, transparent 48%, #ff0000 48%, #ff0000 52%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, #ff0000 48%, #ff0000 52%, transparent 52%);
+    background-size: 20px 20px;
+}
+
+/* Platform Positions (based on screenshot roughly) */
+/* Bottom 1 */
+.platform-1 { bottom: 5%; width: 100%; left: 0; }
+/* 2 */
+.platform-2 { bottom: 22%; width: 85%; right: 0; }
+/* 3 */
+.platform-3 { bottom: 39%; width: 85%; left: 0; }
+/* 4 */
+.platform-4 { bottom: 56%; width: 85%; right: 0; }
+/* 5 */
+.platform-5 { bottom: 73%; width: 85%; left: 0; }
+/* Top 6 */
+.platform-6 { bottom: 90%; width: 60%; left: 20%; }
+
+/* Ladders */
+.ladder {
+    position: absolute;
+    width: 30px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #66ccff 0,
+        #66ccff 2px,
+        transparent 2px,
+        transparent 10px
+    );
+    border-left: 2px solid #66ccff;
+    border-right: 2px solid #66ccff;
+    z-index: 1;
+}
+
+/* Ladder positions connecting platforms */
+/* L1->L2 */
+.ladder-1-2 { 
+    height: 18%; 
+    bottom: 5%; 
+    right: 15%; 
+}
+/* L2->L3 */
+.ladder-2-3 { 
+    height: 18%; 
+    bottom: 22%; 
+    left: 15%; 
+}
+/* L3->L4 */
+.ladder-3-4 { 
+    height: 18%; 
+    bottom: 39%; 
+    right: 30%; 
+}
+/* L4->L5 */
+.ladder-4-5 { 
+    height: 18%; 
+    bottom: 56%; 
+    left: 30%; 
+}
+/* L5->L6 (Climb to top) */
+.ladder-5-6 { 
+    height: 18%; 
+    bottom: 73%; 
+    left: 50%; 
+    transform: translateX(-50%);
+}
+
+/* DK Game Sprite */
+.dk-game-sprite {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    transition: bottom 0.5s linear, left 0.5s linear;
+}
+
+.dk-game-frame {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+/* Define climbing classes if needed, but we might control via JS for positions */
+/* Mario Game Sprite */
+.mario-game-sprite {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+    transition: left 0.05s linear, bottom 0.05s linear;
+}
+
+.mario-game-icon {
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect fill="%23e52521" x="3" y="0" width="10" height="6"/><rect fill="%23ffa500" x="2" y="4" width="12" height="4"/><rect fill="%23e52521" x="4" y="6" width="8" height="6"/><rect fill="%230033cc" x="3" y="10" width="4" height="4"/><rect fill="%230033cc" x="9" y="10" width="4" height="4"/><rect fill="%23ffa500" x="6" y="3" width="4" height="3"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+}
+
+/* Flip Mario for direction */
+.mario-game-sprite.facing-left .mario-game-icon {
+    transform: scaleX(-1);
+}
+
+/* Walking animation */
+.mario-game-sprite.walking .mario-game-icon {
+    animation: marioWalk 0.2s steps(2) infinite;
+}
+
+@keyframes marioWalk {
+    0% { transform: scaleX(1) translateY(0); }
+    50% { transform: scaleX(1) translateY(-2px); }
+}
+
+.mario-game-sprite.facing-left.walking .mario-game-icon {
+    animation: marioWalkLeft 0.2s steps(2) infinite;
+}
+
+@keyframes marioWalkLeft {
+    0% { transform: scaleX(-1) translateY(0); }
+    50% { transform: scaleX(-1) translateY(-2px); }
+}
+
+/* Climbing animation */
+.mario-game-sprite.climbing .mario-game-icon {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect fill="%23e52521" x="3" y="0" width="10" height="6"/><rect fill="%230033cc" x="2" y="6" width="12" height="8"/><rect fill="%23ffa500" x="0" y="4" width="3" height="4"/><rect fill="%23ffa500" x="13" y="4" width="3" height="4"/></svg>');
+    animation: marioClimb 0.3s steps(2) infinite;
+}
+
+@keyframes marioClimb {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(-1); }
+}
+
+/* Game Oil Barrel Position */
+.oil-barrel.game-barrel {
+    position: absolute;
+    bottom: 5%;
+    left: 2%;
+    width: 70px;
+    height: 110px;
+    z-index: 5;
+}
+
+/* Rolling Barrels */
+.barrel {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    z-index: 15;
+    transition: none;
+}
+
+.barrel img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.barrel.rolling img {
+    animation: barrelRoll 0.4s linear infinite;
+}
+
+@keyframes barrelRoll {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.barrel.falling img {
+    animation: barrelFall 0.3s linear infinite;
+}
+
+@keyframes barrelFall {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
+}
