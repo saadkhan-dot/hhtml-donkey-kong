@@ -631,6 +631,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update barrels
             updateBarrels();
 
+            // Check win condition — Mario reached DK
+            const dkX = 50; // DK's X position (%)
+            const dkY = 93; // DK's Y position (platform 6 base + girder)
+            if (Math.abs(mario.x - dkX) < 8 && Math.abs(mario.y - dkY) < 8) {
+                handleWin();
+            }
+
             // Score increases over time
             score += 1;
             const scoreEl = document.querySelector('.score-container .score-value');
@@ -638,6 +645,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         requestAnimationFrame(gameLoop);
+    }
+
+    function handleWin() {
+        gameState = 'WON';
+        console.log('YOU WON! Score:', score);
+
+        // Stop all barrels
+        barrels.forEach(b => b.element.remove());
+        barrels.length = 0;
+
+        // Show win overlay
+        const winOverlay = document.getElementById('winOverlay');
+        if (winOverlay) {
+            const scoreDisplay = winOverlay.querySelector('.win-score');
+            if (scoreDisplay) scoreDisplay.textContent = 'SCORE: ' + String(score).padStart(6, '0');
+            winOverlay.classList.add('active');
+        }
     }
 
     function spawnMario() {
@@ -694,157 +718,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Flash screen effect for new game
     function flashScreen() {
-        const flash = document.createElement('div');
-        flash.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 1000;
-            animation: flashAnim 0.5s ease-out forwards;
-        `;
-        document.body.appendChild(flash);
-        
+        const flash = document.getElementById('flashOverlay');
+        if (!flash) return;
+        flash.classList.add('active');
         setTimeout(() => {
-            flash.remove();
+            flash.classList.remove('active');
         }, 500);
     }
 
     // Show controls overlay
     function showControls() {
-        const overlay = document.createElement('div');
-        overlay.id = 'controlsOverlay';
-        overlay.innerHTML = `
-            <div class="controls-content">
-                <h2>CONTROLS</h2>
-                <p>↑ ↓ - Navigate Menu</p>
-                <p>ENTER - Select</p>
-                <p>← → - Move</p>
-                <p>SPACE - Jump</p>
-                <p class="close-hint">Press ESC to close</p>
-            </div>
-        `;
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        `;
-        
-        const content = overlay.querySelector('.controls-content');
-        content.style.cssText = `
-            text-align: center;
-            color: white;
-            font-family: 'Press Start 2P', cursive;
-        `;
-        
-        const h2 = content.querySelector('h2');
-        h2.style.cssText = `
-            color: #ff3333;
-            margin-bottom: 30px;
-            font-size: 24px;
-        `;
-        
-        const paragraphs = content.querySelectorAll('p');
-        paragraphs.forEach(p => {
-            p.style.cssText = `
-                margin: 15px 0;
-                font-size: 14px;
-            `;
-        });
-        
-        const hint = content.querySelector('.close-hint');
-        hint.style.cssText = `
-            margin-top: 40px;
-            font-size: 10px;
-            color: #888;
-        `;
-        
-        document.body.appendChild(overlay);
-        
-        // Close on ESC or click
+        const overlay = document.getElementById('controlsOverlay');
+        if (!overlay) return;
+        overlay.classList.add('active');
+
         function closeOverlay(e) {
             if (e.key === 'Escape' || e.type === 'click') {
-                overlay.remove();
+                overlay.classList.remove('active');
                 document.removeEventListener('keydown', closeOverlay);
             }
         }
-        
+
         document.addEventListener('keydown', closeOverlay);
         overlay.addEventListener('click', closeOverlay);
     }
 
     // Show about overlay
     function showAbout() {
-        const overlay = document.createElement('div');
-        overlay.id = 'aboutOverlay';
-        overlay.innerHTML = `
-            <div class="about-content">
-                <h2>ABOUT</h2>
-                <p>DONKEY KONG</p>
-                <p style="font-size:10px; margin-top:10px;">Donkey Kong was created by</p>
-                <p style="font-size:10px; margin-top:10px; color:#ffd700;">Shigeru Miyamoto</p>
-                <p style="font-size:10px; margin-top:10px;">who was an employee at Nintendo</p>
-                <p class="close-hint">Press ESC to close</p>
-            </div>
-        `;
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        `;
-        
-        const content = overlay.querySelector('.about-content');
-        content.style.cssText = `
-            text-align: center;
-            color: white;
-            font-family: 'Press Start 2P', cursive;
-        `;
-        
-        const h2 = content.querySelector('h2');
-        h2.style.cssText = `
-            color: #ff3333;
-            margin-bottom: 30px;
-            font-size: 24px;
-        `;
-        
-        const paragraphs = content.querySelectorAll('p');
-        paragraphs.forEach(p => {
-            if (!p.style.fontSize) p.style.fontSize = '14px';
-            p.style.margin = p.style.margin || '15px 0';
-        });
-        
-        const hint = content.querySelector('.close-hint');
-        hint.style.cssText = `
-            margin-top: 40px;
-            font-size: 10px;
-            color: #888;
-        `;
-        
-        document.body.appendChild(overlay);
-        
+        const overlay = document.getElementById('aboutOverlay');
+        if (!overlay) return;
+        overlay.classList.add('active');
+
         function closeOverlay(e) {
             if (e.key === 'Escape' || e.type === 'click') {
-                overlay.remove();
+                overlay.classList.remove('active');
                 document.removeEventListener('keydown', closeOverlay);
             }
         }
-        
+
         document.addEventListener('keydown', closeOverlay);
         overlay.addEventListener('click', closeOverlay);
     }
@@ -869,16 +780,6 @@ document.addEventListener('DOMContentLoaded', function() {
             icon.style.transform = 'rotate(0deg)';
         }
     });
-
-    // Add flash animation style
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes flashAnim {
-            0% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-    `;
-    document.head.appendChild(style);
 
     // Initialize
     updateMenuSelection();

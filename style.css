@@ -741,3 +741,92 @@ body {
     50% { transform: rotate(180deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* ===== Overlays ===== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.overlay.active {
+    display: flex;
+}
+
+.overlay-content {
+    text-align: center;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.overlay-content h2 {
+    color: #ff3333;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.overlay-content p {
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.overlay-content .close-hint {
+    margin-top: 40px;
+    font-size: 10px;
+    color: #888;
+}
+
+.overlay-content .creator-highlight {
+    color: #ffd700;
+}
+
+/* Flash Overlay */
+.flash-overlay {
+    background: white;
+    z-index: 1000;
+    animation: none;
+}
+
+.flash-overlay.active {
+    display: block;
+    animation: flashAnim 0.5s ease-out forwards;
+}
+
+@keyframes flashAnim {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Win Overlay */
+.win-overlay {
+    background: rgba(0, 0, 0, 0.95);
+}
+
+.win-title {
+    color: #ffd700 !important;
+    font-size: 28px !important;
+    animation: winPulse 1s ease-in-out infinite;
+}
+
+.win-message {
+    color: #ff3333;
+    font-size: 18px !important;
+    margin-top: 20px !important;
+}
+
+.win-score {
+    color: #66ccff;
+    margin-top: 30px !important;
+}
+
+@keyframes winPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
